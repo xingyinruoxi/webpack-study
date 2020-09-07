@@ -1,7 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: './src/main.js',
     mode: 'development',
@@ -19,9 +20,34 @@ module.exports = {
                 test: /\.css$/i,
                 include: path.resolve(__dirname, 'src'),
                 use: [
-                    'style-loader',
+                    // 'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader'
                 ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: [
+                            [
+                                "@babel/preset-env",
+                                {
+                                    targets: {
+                                        edge: "17",
+                                        firefox: "60",
+                                        chrome: "67",
+                                        safari: "11.1"
+                                    },
+                                    corejs: 2, //新版本需要指定核⼼库版本
+                                    useBuiltIns: "usage" //按需注⼊
+                                }
+                            ]
+                        ]
+                    }
+                }
             },
             {
                 test: /\.vue$/,
@@ -43,7 +69,8 @@ module.exports = {
                 test: /\.less$/i,
                 include: path.resolve(__dirname, 'src'),
                 use: [
-                    'style-loader',
+                    // 'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     'less-loader'
                 ]
@@ -54,6 +81,10 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './public/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name]-[contenthash:8].css',
+            path: './css'
         }),
         new VueLoaderPlugin()
     ]
