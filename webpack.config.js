@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = {
     entry: './src/main.js',
     mode: 'development',
@@ -21,6 +22,11 @@ module.exports = {
                     'style-loader',
                     'css-loader'
                 ]
+            },
+            {
+                test: /\.vue$/,
+                exclude: /node_modules/,
+                loader: 'vue-loader'
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
@@ -49,5 +55,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './public/index.html'
         }),
+        new VueLoaderPlugin()
     ]
 }
