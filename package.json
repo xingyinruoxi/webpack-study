@@ -1,0 +1,40 @@
+{
+    "name": "webpack-study",
+    "version": "1.0.0",
+    "description": "自定义配置webpack",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "webpack-dev-server"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xingyinruoxi/webpack-study.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/xingyinruoxi/webpack-study/issues"
+    },
+    "homepage": "https://github.com/xingyinruoxi/webpack-study#readme",
+    "devDependencies": {
+        "@babel/core": "^7.11.6",
+        "@babel/preset-env": "^7.11.5",
+        "babel-loader": "^8.1.0",
+        "css-loader": "^4.2.2",
+        "file-loader": "^6.1.0",
+        "less": "^3.12.2",
+        "less-loader": "^7.0.1",
+        "postcss-loader": "^3.0.0",
+        "style-loader": "^1.2.1",
+        "url-loader": "^4.1.0",
+        "webpack": "^4.44.1",
+        "webpack-cli": "^3.3.12",
+        "webpack-dev-server": "^3.11.0"
+    },
+    "dependencies": {
+        "clean-webpack-plugin": "^3.0.0",
+        "html-webpack-plugin": "^4.4.1"
+    }
+}

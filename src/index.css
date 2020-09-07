@@ -1,0 +1,7 @@
+body {
+    background: #ddd url('./333.png') no-repeat;
+}
+
+div:nth-of-type(odd) {
+    background: yellow;
+}
