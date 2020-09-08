@@ -16,13 +16,13 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.(ttf|eot|woff|woff2|svg)$/,
-                exclude: /node_modules/,
-                //  include: /node_modules/,
+                // exclude: /node_modules/,
+                // include: path.resolve(__dirname, "node_modules/font-awesome"),
                 use: {
                     loader: "file-loader",
-                    /*   options: {
-                                   name: './fonts/[name]_[hash:8].[ext]',
-                               } */
+                    options: {
+                        name: "./fonts/[name].[ext]",
+                    },
                 },
             },
             {

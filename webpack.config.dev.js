@@ -16,24 +16,21 @@ const devConfig = {
     module: {
         rules: [{
                 test: /\.css$/i,
-                include: [path.resolve(__dirname, 'src')],
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    "postcss-loader",
-                ]
+                // include: [path.resolve(__dirname, "src")],
+                exclude: [path.resolve(__dirname, "node_modules")],
+                use: ["style-loader", "css-loader", "postcss-loader"],
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader", "postcss-loader"],
+                include: [path.resolve(__dirname, "node_modules/font-awesome")],
             },
             {
                 test: /\.less$/i,
-                include: path.resolve(__dirname, 'src'),
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    "postcss-loader",
-                    'less-loader'
-                ]
-            }
-        ]
+                include: path.resolve(__dirname, "src"),
+                use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
+            },
+        ],
     },
     devServer: {
         //可以是相对路径
@@ -51,7 +48,7 @@ const devConfig = {
             filename: "index.html",
         }),
         new webpack.HotModuleReplacementPlugin(),
-    ]
+    ],
 };
 
 module.exports = merge(baseConfig, devConfig);
