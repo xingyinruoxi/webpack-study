@@ -19,7 +19,8 @@ const devConfig = {
                 include: [path.resolve(__dirname, 'src')],
                 use: [
                     'style-loader',
-                    'css-loader'
+                    'css-loader',
+                    "postcss-loader",
                 ]
             },
             {
@@ -28,6 +29,7 @@ const devConfig = {
                 use: [
                     'style-loader',
                     'css-loader',
+                    "postcss-loader",
                     'less-loader'
                 ]
             }

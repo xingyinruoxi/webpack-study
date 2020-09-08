@@ -19,7 +19,8 @@ const proConfig = {
                 include: [path.resolve(__dirname, 'src')],
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader'
+                    'css-loader',
+                    "postcss-loader",
                 ]
             },
             {
@@ -28,6 +29,7 @@ const proConfig = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
+                    "postcss-loader",
                     'less-loader'
                 ]
             }
