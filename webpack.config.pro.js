@@ -11,7 +11,7 @@ var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const proConfig = {
     output: {
         path: path.resolve(__dirname, "./build"),
-        filename: "[name].js",
+        filename: "./js/[name].js",
     },
     mode: "production",
     module: {
@@ -36,6 +36,22 @@ const proConfig = {
             }
         ]
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            minChunks: 1,
+            cacheGroups: {
+                lodash: {
+                    test: /lodash.js/,
+                    name: "lodash", // 要缓存的 分隔出来的 chunk 名称
+                },
+                vue: {
+                    test: /vue.js/,
+                    name: "vue", // 要缓存的 分隔出来的 chunk 名称
+                }
+            }
+        }
+    },
     plugins: [
         new HardSourceWebpackPlugin(),
         new MiniCssExtractPlugin({
@@ -46,6 +62,28 @@ const proConfig = {
             cssProcessorOptions: {
                 discardComments: { removeAll: true },
             },
+            /* optimization: {
+                splitChunks: {
+                    chunks: 'all',
+                    minChunks: 1,
+                    cacheGroups: {
+                        lodash: {
+                            test: /lodash/,
+                            name: "lodash", // 要缓存的 分隔出来的 chunk 名称
+                        },
+                    }
+                }
+            }, */
+            /*    splitChunks: {
+                   chunks: 'all',
+                   minChunks: 1,
+                   cacheGroups: {
+                       lodash: {
+                           test: /lodash/,
+                           name: "lodash", // 要缓存的 分隔出来的 chunk 名称
+                       },
+                   }
+               } */
         }),
         new HtmlWebpackPlugin({
             //选择html模板

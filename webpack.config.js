@@ -8,7 +8,7 @@ module.exports = {
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name]-[hash:8].js'
+        filename: '[name]-[hash:8].js',
     },
     devServer: {
         port: 3000,

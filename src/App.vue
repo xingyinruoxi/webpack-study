@@ -14,12 +14,27 @@
 
 <script>
 import pic from './333.png'
+import _ from 'lodash';
 export default {
     data() {
         return {
             msg: 'msg',
-            pic
+            pic,
+            objA: {
+                name: 'zhoulin'
+            },
+            objB: {
+                age: 'zhoulin'
+            },
         }
+    },
+    created() {
+        const {
+            objA,
+            objB
+        } = this;
+
+        console.log(_.assign(objA, objB));
     },
     methods: {
         async picClickHandle() {

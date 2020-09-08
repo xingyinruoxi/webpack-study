@@ -8,6 +8,7 @@ import Vue from 'vue';
 // import 'font-awesome/css/font-awesome.min.css'
 import App from './App.vue'
 import _ from 'lodash';
+
 var objA = { "name": "戈德斯文", "car": "宝马" };
 var objB = { "name": "柴硕", "loveEat": true, 'aa': 888 };
 
