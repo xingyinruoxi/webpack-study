@@ -18,35 +18,29 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.css$/i,
-                include: path.resolve(__dirname, 'src'),
+                include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, './node_modules/font-awesome')],
                 use: [
                     // 'style-loader',
                     MiniCssExtractPlugin.loader,
                     'css-loader'
                 ]
             },
+            /*  {
+                 test: /\.(ttf|eot|woff|woff2|svg)$/,
+                 // exclude: /node_modules/,
+                 include: /node_modules/,
+                 use: {
+                     loader: 'file-loader',
+                     options: {
+                         name: './fonts/[name]_[hash:8].[ext]',
+                     }
+                 }
+             }, */
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
-                    options: {
-                        presets: [
-                            [
-                                "@babel/preset-env",
-                                {
-                                    targets: {
-                                        edge: "17",
-                                        firefox: "60",
-                                        chrome: "67",
-                                        safari: "11.1"
-                                    },
-                                    corejs: 2, //新版本需要指定核⼼库版本
-                                    useBuiltIns: "usage" //按需注⼊
-                                }
-                            ]
-                        ]
-                    }
                 }
             },
             {
