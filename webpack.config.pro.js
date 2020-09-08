@@ -7,6 +7,7 @@ const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const proConfig = {
     output: {
         path: path.resolve(__dirname, "./build"),
@@ -36,6 +37,7 @@ const proConfig = {
         ]
     },
     plugins: [
+        new HardSourceWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: "css/[name]-[contenthash:8].css",
         }),
