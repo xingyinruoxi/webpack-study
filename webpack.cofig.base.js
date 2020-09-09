@@ -14,14 +14,16 @@ module.exports = {
         extensions: [".vue", ".js"],
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.(ttf|eot|woff|woff2|svg)$/,
                 // exclude: /node_modules/,
-                // include: path.resolve(__dirname, "node_modules/font-awesome"),
+                include: path.resolve(__dirname, "node_modules/font-awesome/fonts"),
                 use: {
                     loader: "file-loader",
                     options: {
-                        name: "./fonts/[name].[ext]",
+                        name: "[name].[ext]",
+                        outputPath: "fonts/",
                     },
                 },
             },
@@ -47,6 +49,7 @@ module.exports = {
                     outputPath: "./images",
                 },
             },
+           
         ],
     },
     plugins: [new CleanWebpackPlugin(), new VueLoaderPlugin()],

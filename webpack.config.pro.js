@@ -15,15 +15,39 @@ const proConfig = {
     },
     mode: "production",
     module: {
-        rules: [{
+        rules: [
+           
+            {
                 test: /\.css$/i,
-                include: [path.resolve(__dirname, 'src')],
+                // exclude: [path.resolve(__dirname, "node_modules")],
+                include: [path.resolve(__dirname, "src")],
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     "postcss-loader",
                 ]
             },
+            {
+                test: /\.css$/i,
+                // exclude: [path.resolve(__dirname, "node_modules")],
+                include: [path.resolve(__dirname, "node_modules/font-awesome/css")],
+                use: [
+                    // MiniCssExtractPlugin.loader,
+                  
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                       
+                    }
+                   
+                ]
+            },
+           
+         /*    {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader,, "css-loader", "postcss-loader"],
+                include: [path.resolve(__dirname, "node_modules")],
+            }, */
             {
                 test: /\.less$/i,
                 include: path.resolve(__dirname, 'src'),
@@ -33,7 +57,8 @@ const proConfig = {
                     "postcss-loader",
                     'less-loader'
                 ]
-            }
+            },
+            
         ]
     },
     optimization: {
@@ -48,42 +73,20 @@ const proConfig = {
                 vue: {
                     test: /vue.js/,
                     name: "vue", // 要缓存的 分隔出来的 chunk 名称
-                }
+                },
             }
         }
     },
     plugins: [
         new HardSourceWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: "css/[name]-[contenthash:8].css",
+            filename: "./css/[name]-[contenthash:8].css",
         }),
         new OptimizeCSSAssetsPlugin({
             cssProcessor: require("cssnano"), //引入cssnano引擎
             cssProcessorOptions: {
                 discardComments: { removeAll: true },
             },
-            /* optimization: {
-                splitChunks: {
-                    chunks: 'all',
-                    minChunks: 1,
-                    cacheGroups: {
-                        lodash: {
-                            test: /lodash/,
-                            name: "lodash", // 要缓存的 分隔出来的 chunk 名称
-                        },
-                    }
-                }
-            }, */
-            /*    splitChunks: {
-                   chunks: 'all',
-                   minChunks: 1,
-                   cacheGroups: {
-                       lodash: {
-                           test: /lodash/,
-                           name: "lodash", // 要缓存的 分隔出来的 chunk 名称
-                       },
-                   }
-               } */
         }),
         new HtmlWebpackPlugin({
             //选择html模板
